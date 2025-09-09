@@ -7,6 +7,8 @@ function Products() {
   const [loader, setLoader] = useState(false);
   const [expanded, setExpanded] = useState({}); // track expanded state for each product
 
+  
+
   // useEffect(() => {
   //   const api = async () => {
   //     try {

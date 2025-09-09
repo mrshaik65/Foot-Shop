@@ -1,6 +1,19 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 function ProductCard({ ApisData }) {
+  const [showMore, setShowMore] = useState(false);
+  const Navigation = useNavigate();
+
+  const goToPDPpage = (id) => {
+    Navigation(`/product/${id}`, { state: ApisData });
+  };
+
   return (
-    <div className="max-w-sm p-5 transition bg-white shadow-md rounded-2xl hover:shadow-lg">
+    <div
+      className="max-w-sm p-5 transition bg-white shadow-md rounded-2xl hover:shadow-lg"
+      onClick={() => goToPDPpage(ApisData.id)}
+    >
       {/* Product Image */}
       <div className="overflow-hidden rounded-xl aspect-[1/1] mb-4">
         <img
@@ -13,7 +26,9 @@ function ProductCard({ ApisData }) {
       {/* Product Info */}
       <div>
         {/* Title */}
-        <h2 className="mb-1 text-lg font-bold text-gray-900">{ApisData.title}</h2>
+        <h2 className="mb-1 text-lg font-bold text-gray-900">
+          {ApisData.title}
+        </h2>
 
         {/* Brand & Material */}
         <p className="mb-2 text-sm text-gray-500">
@@ -46,10 +61,25 @@ function ProductCard({ ApisData }) {
           ⭐ {ApisData.rating} ({ApisData.number_of_ratings} ratings)
         </p>
 
-        {/* Description */}
-        <p className="mb-3 text-sm text-gray-700">{ApisData.description}</p>
+        {/* Description with Show More */}
+        <p className="mb-3 text-sm text-gray-700">
+          {showMore
+            ? ApisData.description
+            : `${ApisData.description.slice(0, 60)}...`}
+          {ApisData.description.length > 60 && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation(); // prevent navigation when clicking
+                setShowMore(!showMore);
+              }}
+              className="ml-2 text-sm font-medium text-blue-600 hover:underline"
+            >
+              {showMore ? "Show Less" : "Show More"}
+            </button>
+          )}
+        </p>
 
-        {/* Sizes (no default selected) */}
+        {/* Sizes */}
         <div className="flex flex-wrap gap-2 mb-3">
           {ApisData.sizes.map((sz) => (
             <span
