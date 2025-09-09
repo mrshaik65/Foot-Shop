@@ -1,5 +1,5 @@
 import Header from "./Components/Header/Header";
-import Home from "./Components/Home/home";
+import Home from "./Components/Home/Home"
 import Products from "./Components/Products/products";
 import Cart from "./Components/Cart/cart";
 import "./index.css";
