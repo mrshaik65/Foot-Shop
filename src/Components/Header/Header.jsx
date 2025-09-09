@@ -34,14 +34,6 @@ function Header() {
               Products
             </Link>
           </li>
-          <li>
-            <Link
-              to={"/Cart"}
-              className="font-semibold text-gray-700 transition hover:text-indigo-600"
-            >
-              Cart
-            </Link>
-          </li>
         </ul>
       </nav>
     </header>

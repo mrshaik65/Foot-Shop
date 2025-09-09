@@ -122,9 +122,14 @@ function Products() {
     // </div>
 
     <>
-      {ApiData.map((eachproduct) => (
-        <ProductCard ApisData={eachproduct} key={eachproduct.id} />
-      ))}
+       <div className="min-h-screen px-6 py-10 mt-10 bg-gray-100">
+      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {ApiData.map((eachproduct) => (
+          <ProductCard ApisData={eachproduct} key={eachproduct.id} />
+        ))}
+      </div>
+    </div>
+    
     </>
   );
 }
